@@ -17,8 +17,3 @@ appUI <- function() {
     )
   )
 }
-
-appServer <- function(input, output, session) {
-  weaponTableServer("weaponTable")
-  teamComparisonServer("teamComp")
-}
