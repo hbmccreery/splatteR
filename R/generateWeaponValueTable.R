@@ -132,7 +132,7 @@ generateWeaponValueTable <- function(df, mode_type) {
       par2_plot = '',
     ) %>%
     cols_align(
-      columns = vars(kpg, apg, iapg, spg, dpg, win_pct),
+      columns = vars(kpg, apg, iapg, spg, dpg, win_pct, weapon_Range),
       align = 'center'
     ) %>%
     tab_style(
