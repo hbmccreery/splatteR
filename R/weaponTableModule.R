@@ -4,6 +4,7 @@
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data
 #' @importFrom dplyr select ungroup group_by summarise mutate left_join case_when
+#' @importFrom utils head
 #' @importFrom tidyr pivot_longer pivot_wider drop_na
 #' @importFrom tibble tibble
 #' @importFrom purrr pmap map map2

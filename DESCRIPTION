@@ -12,8 +12,12 @@ LazyData: true
 RoxygenNote: 7.1.1
 Imports: 
     dplyr,
+    glue,
     gt,
     magrittr,
     paletteer,
+    purrr,
     rlang,
-    tibble
+    shiny,
+    tibble,
+    tidyr
