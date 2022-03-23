@@ -1,7 +1,8 @@
 #' UI for shiny app
 #'
-#' @importFrom shiny fluidPage tabsetPanel tabPanel
+#' @export
 #'
+#' @importFrom shiny fluidPage tabsetPanel tabPanel
 appUI <- function() {
   fluidPage(
     tabsetPanel(
