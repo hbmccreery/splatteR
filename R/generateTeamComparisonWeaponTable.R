@@ -132,7 +132,7 @@ generateTeamComparisonWeaponTable <- function(
       )
     ) %>%
     summary_rows(
-      columns = vars(kpg, apg, dpg, iapg),
+      columns = vars(kpg, apg, dpg, iapg, weapon_Range),
       fns = list(Tot = ~mean(.)),
       formatter = fmt_number,
       decimals = 1
