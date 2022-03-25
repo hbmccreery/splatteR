@@ -20,5 +20,6 @@ Imports:
     purrr,
     rlang,
     shiny,
+    shinyWidgets,
     tibble,
     tidyr

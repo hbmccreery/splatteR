@@ -9,6 +9,7 @@
 #' @importFrom tibble tibble
 #' @importFrom purrr pmap map map2
 #' @importFrom gt gt_output render_gt
+#' @importFrom shinyWidgets pickerInput
 #'
 weaponTableUI <- function(id) {
   ns <- NS(id)
@@ -38,17 +39,23 @@ weaponTableUI <- function(id) {
     # Sidebar with a slider input for number of bins
     fluidRow(
       column(
-        2,
+        width = 2,
         selectInput(
           ns("modeName"),
           "Mode Select",
           game_types
-        ),
+        )
+      ),
+      column(
+        width = 2,
         selectInput(
           ns("tableSort"),
           "Sort By",
           sort_type
-        ),
+        )
+      ),
+      column(
+        width = 2,
         sliderInput(
           ns("nDisplay"),
           "# Weapons",
@@ -57,35 +64,40 @@ weaponTableUI <- function(id) {
           value = 10,
           sep = 1
         )
-      ),
+      )
+    ),
+    fluidRow(
       column(
         3,
-        selectizeInput(
+        shinyWidgets::pickerInput(
           inputId = ns("weaponCat"),
           label = "Weapon Category",
           choices = weapon_types,
           selected = weapon_types,
-          multiple = T
+          multiple = T,
+          options = list(`actions-box` = TRUE)
         )
       ),
       column(
         3,
-        selectizeInput(
+        shinyWidgets::pickerInput(
           inputId = ns("weaponSub"),
           label = "Weapon Subweapon",
           choices = weapon_subs,
           selected = weapon_subs,
-          multiple = T
+          multiple = T,
+          options = list(`actions-box` = TRUE)
         )
       ),
       column(
         4,
-        selectizeInput(
+        shinyWidgets::pickerInput(
           inputId = ns("weaponSpecial"),
           label = "Weapon Special",
           choices = weapon_specials,
           selected = weapon_specials,
-          multiple = T
+          multiple = T,
+          options = list(`actions-box` = TRUE)
         )
       ),
     ),
@@ -160,6 +172,18 @@ weaponTableServer <- function(id) {
           }
         ) %>%
           do.call(rbind, .)
+
+        if (
+          (length(input$weaponCat) == 0)
+          | (length(input$weaponSub) == 0)
+          | (length(input$weaponSpecial) == 0)
+        ) {
+          return(
+            tibble(err_message = 'Please select at least one weapon category, subweapon, and special') %>%
+              gt::gt() %>%
+              gt::cols_label(err_message = '')
+          )
+        }
 
         if (dim(input_bound_df)[1] == 0) {
           agg_df_filtered <- agg_df %>%
