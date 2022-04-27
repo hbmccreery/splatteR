@@ -1,8 +1,8 @@
 #' App to compare teams
 calloutPageApp <- function() {
-  ui <- fluidPage(calloutPageUI("calloutPage"))
+  ui <- fluidPage(calloutPageUI("calloutPageApp"))
   server <- function(input, output, session) {
-    calloutPageServer("calloutPage")
+    calloutPageServer("calloutPageApp")
   }
   shinyApp(ui, server)
 }

@@ -71,15 +71,6 @@ calloutPageServer <- function(id) {
         )
       })
 
-      output$mapAveblink <- renderText({
-        callout_df %>%
-          filter(
-            .data$map_name == input$mapA,
-            .data$mode_name == input$selectedMode
-          ) %>%
-          pull(fullsize_link)
-        })
-
       output$mapBLink <- renderUI({
         tags$iframe(
           imageOutput("imageMapB"),
