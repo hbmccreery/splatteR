@@ -35,7 +35,7 @@ calloutPageUI <- function(id) {
           choices = map_names,
           selected = "MakoMart"
         ),
-        uiOutput(ns("mapALink"))
+        htmlOutput(ns("frameMapA"))
       ),
       column(
         width = 6,
@@ -55,9 +55,8 @@ calloutPageServer <- function(id) {
   moduleServer(
     id,
     function(input, output, session) {
-      output$mapALink <- renderUI({
+      output$frameMapA <- renderUI({
         tags$iframe(
-          imageOutput("imageMapA"),
           src = callout_df %>%
             filter(
               .data$map_name == input$mapA,
@@ -73,7 +72,6 @@ calloutPageServer <- function(id) {
 
       output$mapBLink <- renderUI({
         tags$iframe(
-          imageOutput("imageMapB"),
           src = callout_df %>%
             filter(
               .data$map_name == input$mapB,
