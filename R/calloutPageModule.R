@@ -35,7 +35,6 @@ calloutPageUI <- function(id) {
           choices = map_names,
           selected = "MakoMart"
         ),
-        verbatimTextOutput(ns("mapAveblink")),
         uiOutput(ns("mapALink"))
       ),
       column(
