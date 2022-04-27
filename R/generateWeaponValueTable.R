@@ -6,6 +6,13 @@
 #' @importFrom dplyr mutate select relocate contains vars
 #'
 generateWeaponValueTable <- function(df, mode_type) {
+  if (dim(df)[1] == 0) {
+    tibble(err_msg = 'No data found for your specified parameters.') %>%
+      gt() %>%
+      cols_label(err_msg = '')
+  }
+
+
   IMG_URL_START <- "http://www.stat.ink/assets/20220112-159/gxzctyqhz7zbajyi/"
   IMG_URL_END <- ".png?v=1642007108"
 

@@ -201,10 +201,30 @@ weaponTableServer <- function(id) {
               weapon_cat %in% input$weaponCat,
               weapon_sub_name %in% input$weaponSub,
               weapon_special_name %in% input$weaponSpecial
-            ) %>%
+            )
+
+          if(dim(agg_df_filtered)[1] == 0) {
+            return(
+              tibble(err_msg = 'No data found for your specified parameters.') %>%
+                gt::gt() %>%
+                gt::cols_label(err_msg = '')
+            )
+          }
+
+          agg_df_filtered <- agg_df_filtered %>%
             pivot_longer(val_bounds$name) %>%
             left_join(input_bound_df) %>%
-            filter(value >= min_stat_val, value <= max_stat_val) %>%
+            filter(value >= min_stat_val, value <= max_stat_val)
+
+          if(dim(agg_df_filtered)[1] == 0) {
+            return(
+              tibble(err_msg = 'No data found for your specified parameters.') %>%
+                gt::gt() %>%
+                gt::cols_label(err_msg = '')
+            )
+          }
+
+          agg_df_filtered <- agg_df_filtered %>%
             select(-contains("stat_val")) %>%
             pivot_wider(names_from = name, values_from = value) %>%
             drop_na()

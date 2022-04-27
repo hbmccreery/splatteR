@@ -2,6 +2,7 @@
 
 export(appServer)
 export(appUI)
+export(calloutPageUI)
 export(teamComparisonUI)
 import(gt)
 import(shiny)
