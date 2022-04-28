@@ -7,12 +7,12 @@ appUI <- function() {
   fluidPage(
     tabsetPanel(
       tabPanel(
-        "Map Callouts",
-        calloutPageUI("calloutPage")
-      ),
-      tabPanel(
         "Weapon Info",
         weaponTableUI("weaponTable")
+      ),
+      tabPanel(
+        "Map Callouts",
+        calloutPageUI("calloutPage")
       ),
       tabPanel(
         "Team Comp Analyzer",
